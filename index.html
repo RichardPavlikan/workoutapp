@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout App</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>
+        Workout app - Beta Test
+    </h1>
+    <div class="text_background">
+        <p class="text">
+            Vitaj! Ďakujem, že si klikol na link a rozhodol sa pomôcť mi. Na začiatok tu mám pár informácií...
+            <br>
+            <br>
+            <strong>O čom je aplikácia?</strong>
+            <br>
+            Táto aplikácia bola vytvorená hlavne pre ľudí, ktorí radi cvičia a 
+            prípadne hľadajú nové cviky.
+            V aplikácii užívateľ nájde cviky na beh, yogu, domáce cvičenie alebo cviky do posilňovne.
+            <strong>Ale to nie je všetko.</strong>
+            Celá podstata aplikácie stojí na zdieľaní cvikov so svojimi priateľmi. V aplikácii si 
+            dokážete vytvoriť svoje cviky, uložiť si ich, zdieľať ich s priateľmi alebo vyskúšať cviky
+            iných užívateľov.
+            <br>
+            <br>
+            <strong>Ako sa zúčastniť beta testingu?</strong>
+            <br>
+            Keďže beta testovanie momentálne neprebieha pre všetkých používateľov, je potrebné vyplniť nasledujúci dotazník.
+        </p>
+    </div>
+    <br>
+    <div class="myInput">
+        <input type="text" placeholder="Meno" id="firstName">
+        <input type="text" placeholder="Priezvisko" id="secondName">
+        <input type="email" placeholder="Email" id="email">
+        <input type="text" placeholder="Cvičím napr.: Yogu" id="workout">
+        <p>Používam zariadenie s operačným systémom...</p>
+    </div>
+    <input type="checkbox" class="myCheckBox" id="android">
+    <label for="android">Android</label>
+    <input type="checkbox" class="myCheckBox" id="ios">
+    <label for="android">iOS</label>
+    <br>
+    <h2 id="final" style="text-align: center;"></h2>
+    <div class="myInput">
+        <input type="button" value="Odoslať" onclick="sendData()">
+    </div>
+    <div class="text_background">
+        <p class="text">
+            <strong>Odoslal som dotazník, čo teraz?</strong>
+            <br>
+            V nasledujúcich 24 hodinách obdržíš e-mail s odkazom na aplikáciu.
+            Pri prvom spustení aplikácie je potrebné sa prihlasiť pomocou tvojho Google učtu.
+            Po prihlásení môžeš využívať všetky funkcie aplikácie a vyskúšať nové cviky.
+            Aby bolo beta testovanie úspešné, a aby sa vychytali všetky chyby, je dôležité aby si 
+            si vytvoril vlastné cviky a zdieľal ich s ostatnými uživateľmi. Zároveň je veľmi dôležitá
+            tvoja spätná väzba. Feedback môžeš posielať pomocou funkcie "Send Feedback" v menu v profile.
+            Prosím pošli mi feedback nech sa jedná o čokoľvek.
+        </p> 
+        <h2 style="color: white; text-align:center; padding-bottom:10px">
+            Kontakt: richardpavlikan@gmail.com
+        </h2>
+    </div>
+      
+    
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-firestore.js"></script>
+
+    <script>
+        const firebaseConfig = {
+			apiKey: "AIzaSyCtBN-GYMMkkEtMpavxEVDwcwYt8rXBq5o",
+            authDomain: "myform-9fd3b.firebaseapp.com",
+            databaseURL: "https://myform-9fd3b-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "myform-9fd3b",
+            storageBucket: "myform-9fd3b.appspot.com",
+            messagingSenderId: "1049895417697",
+            appId: "1:1049895417697:web:3bafcb90605b8595fef720"
+		};
+
+		firebase.initializeApp(firebaseConfig);
+        var firestore = firebase.firestore();
+
+        async function sendData(){
+            var firstName = document.getElementById("firstName").value;
+            var secondName = document.getElementById("secondName").value;
+
+            if(firstName != "" && firstName != " "){
+                var email = document.getElementById("email").value;
+                var workout = document.getElementById("workout").value;
+                var android = document.getElementById("android").checked;
+                var ios = document.getElementById("ios").checked;
+
+                await firestore.collection("data").add({
+                    first:firstName,
+                    second: secondName,
+                    email: email,
+                    workout: workout,
+                    android: android,
+                    ios: ios
+                });
+
+                document.getElementById("final").innerHTML = "Ďakujem";
+            }
+            
+        }
+    </script>
+</body>
+</html>

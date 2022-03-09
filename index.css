@@ -1,0 +1,57 @@
+body{
+    margin: 0;text-align: center;font-family: Helvetica;
+    padding: 0;
+    scroll-behavior:smooth;
+}
+
+img{
+    width: 100%;
+    padding: 0;
+}
+
+h1{font-family: Helvetica;}
+
+h2{
+    font-family: Helvetica;
+    text-align: left;
+}
+
+.text{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-family: Helvetica;
+    color: white;
+}
+.text_background{
+    background-color: rgb(252, 81, 81);
+    padding: 0;
+}
+
+.myInput input{
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+.myInput input{
+    height: 100%;
+    width: 75%;
+    outline: none;
+    padding-left: 15px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    border-bottom-width: 2px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+  }
+
+.myInput input:focus{
+    border-color: #f83131;
+}
+
+.myInput .insideLogin form .field input::placeholder{
+    color: #999;
+    transition: all 0.3s ease;
+}
