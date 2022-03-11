@@ -34,10 +34,7 @@
     </div>
     <br>
     <div class="myInput">
-        <input type="text" placeholder="Meno" id="firstName">
-        <input type="text" placeholder="Priezvisko" id="secondName">
         <input type="email" placeholder="Email" id="email">
-        <input type="text" placeholder="Cvičím napr.: Yogu" id="workout">
         <p>Používam zariadenie s operačným systémom...</p>
     </div>
     <input type="checkbox" class="myCheckBox" id="android">
@@ -86,20 +83,14 @@
         var firestore = firebase.firestore();
 
         async function sendData(){
-            var firstName = document.getElementById("firstName").value;
-            var secondName = document.getElementById("secondName").value;
+            var email = document.getElementById("email").value;
 
-            if(firstName != "" && firstName != " "){
-                var email = document.getElementById("email").value;
-                var workout = document.getElementById("workout").value;
+            if(email != "" && email != " "){
                 var android = document.getElementById("android").checked;
                 var ios = document.getElementById("ios").checked;
 
                 await firestore.collection("data").add({
-                    first:firstName,
-                    second: secondName,
                     email: email,
-                    workout: workout,
                     android: android,
                     ios: ios
                 });
